@@ -3,11 +3,15 @@
 window.addEventListener("load", start);
 
 let bottles = [];
+let newBottleArray = [];
 
 async function start() {
   console.log("JS kører");
   bottles = await getJsonFile();
   console.log(bottles);
+  newBottleArray = bottles;
+  console.log(newBottleArray);
+  document.querySelector("#start-game-button").addEventListener("click", setTimeOutToAddNewBottle);
   makeRandomBottleSequence();
 }
 
@@ -19,6 +23,7 @@ async function getJsonFile() {
   return data;
 }
 
+// ====== Make random bottle number =============
 function makeRandomBottleSequence() {
   let randomBottleNumber = Math.random() * 2;
   console.log(randomBottleNumber);
@@ -26,16 +31,17 @@ function makeRandomBottleSequence() {
   console.log(randomBottleNumber);
   let newBottle = bottles[randomBottleNumber];
   console.log(newBottle);
-  bottles.push(newBottle);
+  newBottleArray.push(newBottle);
   console.log(bottles);
-  if (bottles.length >= 9) {
-    showBottles(bottles);
-    moveBottles(newBottle);
+  if (newBottleArray.length >= 10) {
+    showBottles(newBottleArray);
+    // moveBottles(newBottle);
   } else {
     makeRandomBottleSequence();
   }
 }
 
+// ====== Show bottles =============
 function showBottles(bottleList) {
   document.querySelector("#bottle-container").innerHTML = "";
   for (const bottle of bottleList) {
@@ -44,11 +50,14 @@ function showBottles(bottleList) {
   }
 }
 
-function moveBottles(newBottle) {
-  let newBottleArray = [];
-  newBottleArray = bottles.unshift(newBottle);
+function setTimeOutToAddNewBottle() {
+  console.log("start game-button clicked");
+  const timeOut = setTimeout(addNewBottle, 2000);
+}
+
+function addNewBottle() {
+  console.log("pop object from array");
+  newBottleArray.pop();
   console.log(newBottleArray);
-  bottles.concat(newBottleArray);
-  console.log(bottles);
-  showBottles(bottles);
+  showBottles(newBottleArray);
 }
