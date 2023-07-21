@@ -60,4 +60,7 @@ function addNewBottle() {
   newBottleArray.pop();
   console.log(newBottleArray);
   showBottles(newBottleArray);
+  newBottleArray.unshift(bottles[0]);
+  console.log(newBottleArray);
+  showBottles(newBottleArray);
 }
