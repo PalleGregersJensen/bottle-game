@@ -1,0 +1,14 @@
+body{
+    background-color: red;
+}
+
+#bottle-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+#bottle-container, img {
+    width: 100%;
+    height: 100%;
+
+}
