@@ -7,7 +7,8 @@ let bottles = [];
 async function start() {
     console.log("JS kører");
     bottles = await getJsonFile();
-    console.log(bottles);
+  console.log(bottles);
+  makeRandomBottleSequence();
     showBottles(bottles);
 }
 
@@ -20,7 +21,12 @@ async function getJsonFile() {
 }
 
 function makeRandomBottleSequence() {
-    let randomBottle = Math.random(bottles[0]);
+  let randomBottleNumber = (Math.random()*2);
+  console.log(randomBottleNumber);
+  randomBottleNumber = Math.floor(randomBottleNumber);
+  console.log(randomBottleNumber);
+  let newBottle = bottles[randomBottleNumber];
+  console.log(newBottle);
 }
 
 function showBottles(bottleList) {
