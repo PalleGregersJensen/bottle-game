@@ -5,6 +5,7 @@ body{
 #bottle-container {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
+    gap: 0.3em;
 }
 
 #bottle-container, img {

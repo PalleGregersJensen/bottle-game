@@ -19,6 +19,10 @@ async function getJsonFile() {
     return data;
 }
 
+function makeRandomBottleSequence() {
+    let randomBottle = Math.random(bottles[0]);
+}
+
 function showBottles(bottleList) {
   for (const bottle of bottleList) {
     const bottleHtml = /*html*/ `<img src="${bottle.image}">`;
