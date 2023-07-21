@@ -28,12 +28,12 @@ function makeRandomBottleSequence() {
   console.log(newBottle);
   bottles.push(newBottle);
   console.log(bottles);
-  if (bottles.length >= 10) {
+  if (bottles.length >= 9) {
     showBottles(bottles);
+    moveBottles(newBottle);
   } else {
     makeRandomBottleSequence();
   }
-  moveBottles(newBottle);
 }
 
 function showBottles(bottleList) {
@@ -47,7 +47,6 @@ function showBottles(bottleList) {
 function moveBottles(newBottle) {
   let newBottleArray = [];
   newBottleArray = bottles.unshift(newBottle);
-  // newBottleArray = newBottleArray.shift(newBottle);
   console.log(newBottleArray);
   bottles.concat(newBottleArray);
   console.log(bottles);
