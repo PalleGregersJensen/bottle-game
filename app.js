@@ -14,7 +14,7 @@ async function start() {
   console.log(newBottleArray);
   makeRandomBottleSequence();
   document.querySelector("#start-game-button").addEventListener("click", setTimeOutToAddNewBottle);
-  document.querySelector("#bottle-container, img").addEventListener("click", bottleClicked);
+  document.querySelector("#bottle-container, div:last-child").addEventListener("click", bottleClicked);
 }
 
 async function getJsonFile() {
@@ -46,8 +46,12 @@ function makeRandomBottleSequence() {
 function showBottles(bottleList) {
   document.querySelector("#bottle-container").innerHTML = "";
   for (const bottle of bottleList) {
-    const bottleHtml = /*html*/ `<img src="${bottle.image}">`;
+    const bottleHtml = /*html*/ `<img class = "bottles" src="${bottle.image}">`;
     document.querySelector("#bottle-container").insertAdjacentHTML("beforeend", bottleHtml);
+  }
+  const bottles = document.querySelectorAll("bottles");
+  for (const bottle of bottles) {
+    bottles.addEventListener("click", bottleClicked);
   }
 }
 
@@ -70,20 +74,24 @@ function addNewBottle() {
   const timeOut = setTimeout(addNewBottle, 1500);
 }
 
+// ====== Bottle clciked function =============
 function bottleClicked() {
   console.log("bottle clicked");
-  const bottleClicked = this.childOf;
+  const bottleClicked = this;
   console.log(bottleClicked);
   document.querySelector("#bottle-container, div").addEventListener("click", zoomOutFunction);
 }
 
+
+// ====== Zoom-out class added to specific bottle =============
 function zoomOutFunction() {
   console.log("zoom-out-function activated");
-  const bottle = this;
+  const bottle = event.target;
   console.log(bottle);
   bottle.classList.add("zoom-out");
 }
 
+// ====== Generate new random bottle to array ============= 
 function generateNewBottle() {
   let randomBottleNumber = Math.random() * 2;
   console.log(randomBottleNumber);
