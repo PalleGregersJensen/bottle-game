@@ -4,15 +4,17 @@ window.addEventListener("load", start);
 
 let bottles = [];
 let newBottleArray = [];
+let newBottle;
 
 async function start() {
   console.log("JS kører");
   bottles = await getJsonFile();
   console.log(bottles);
-  newBottleArray = bottles;
+  newBottleArray === bottles;
   console.log(newBottleArray);
-  document.querySelector("#start-game-button").addEventListener("click", setTimeOutToAddNewBottle);
   makeRandomBottleSequence();
+  document.querySelector("#start-game-button").addEventListener("click", setTimeOutToAddNewBottle);
+  document.querySelector("#bottle-container, img").addEventListener("click", bottleClicked);
 }
 
 async function getJsonFile() {
@@ -29,13 +31,12 @@ function makeRandomBottleSequence() {
   console.log(randomBottleNumber);
   randomBottleNumber = Math.floor(randomBottleNumber);
   console.log(randomBottleNumber);
-  let newBottle = bottles[randomBottleNumber];
+  newBottle = bottles[randomBottleNumber];
   console.log(newBottle);
   newBottleArray.push(newBottle);
   console.log(bottles);
   if (newBottleArray.length >= 10) {
     showBottles(newBottleArray);
-    // moveBottles(newBottle);
   } else {
     makeRandomBottleSequence();
   }
@@ -56,11 +57,39 @@ function setTimeOutToAddNewBottle() {
 }
 
 function addNewBottle() {
-  console.log("pop object from array");
-  newBottleArray.pop();
+  newBottleArray.shift();
+  console.log("shift object from array");
   console.log(newBottleArray);
   showBottles(newBottleArray);
-  newBottleArray.unshift(bottles[0]);
+  newBottle = generateNewBottle();
+  newBottleArray.push(newBottle);
+  console.log("push new object to array");
+  console.log(newBottle);
   console.log(newBottleArray);
   showBottles(newBottleArray);
+  const timeOut = setTimeout(addNewBottle, 1500);
+}
+
+function bottleClicked() {
+  console.log("bottle clicked");
+  const bottleClicked = this.childOf;
+  console.log(bottleClicked);
+  document.querySelector("#bottle-container, div").addEventListener("click", zoomOutFunction);
+}
+
+function zoomOutFunction() {
+  console.log("zoom-out-function activated");
+  const bottle = this;
+  console.log(bottle);
+  bottle.classList.add("zoom-out");
+}
+
+function generateNewBottle() {
+  let randomBottleNumber = Math.random() * 2;
+  console.log(randomBottleNumber);
+  randomBottleNumber = Math.floor(randomBottleNumber);
+  console.log(randomBottleNumber);
+  newBottle = bottles[randomBottleNumber];
+  console.log(newBottle);
+  return newBottle;
 }

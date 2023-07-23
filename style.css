@@ -13,3 +13,27 @@ body{
     height: 100%;
 
 }
+
+.zoom-out {
+  margin: 24px;
+  width: 50px;
+  height: 50px;
+  background: 
+#f500cc;
+  animation-name: zoom-out;
+  animation-duration:  1s; 
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+}
+
+@keyframes zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(0.5, 0.5);
+  }
+  100% {
+    transform: scale(0.1, 0.1);
+  }
+}
