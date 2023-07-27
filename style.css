@@ -37,3 +37,7 @@ body{
     transform: scale(0.1, 0.1);
   }
 }
+
+.hidden {
+  display: none;
+}
