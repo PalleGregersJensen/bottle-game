@@ -46,7 +46,7 @@ function makeRandomBottleSequence() {
 function showBottles(bottleList) {
   document.querySelector("#bottle-container").innerHTML = "";
   for (const bottle of bottleList) {
-    const bottleHtml = /*html*/ `<img class = "bottles" src="${bottle.image}">`;
+    const bottleHtml = /*html*/ `<div class="bottle-image-container"><img class = "bottles" src="${bottle.image}"></div>`;
     document.querySelector("#bottle-container").insertAdjacentHTML("beforeend", bottleHtml);
   }
   const bottles = document.querySelectorAll("bottles");
@@ -79,6 +79,7 @@ function bottleClicked() {
   console.log("bottle clicked");
   const bottleClicked = this;
   console.log(bottleClicked);
+  
   document.querySelector("#bottle-container, div").addEventListener("click", zoomOutFunction);
 }
 
