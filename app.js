@@ -79,7 +79,8 @@ function bottleClicked() {
   console.log("bottle clicked");
   const bottleClicked = this;
   console.log(bottleClicked);
-  
+  const bottleNumberInArray = newBottleArray.findIndex((bottle) => bottle === bottleClicked);
+  console.log(bottleNumberInArray);
   document.querySelector("#bottle-container, div").addEventListener("click", zoomOutFunction);
 }
 
